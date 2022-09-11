@@ -4,20 +4,26 @@ import styled from "styled-components";
 import axios from 'axios';
 
 const Landing = () => {
+    // input value
     const [rangeVal, setrangeVal] = useState('');
+    // validation message of input value
     const [warningMsg, setwarningMsg] = useState('');
+    // primes string
     const [primes, setprimes] = useState('');
+    // medium primes string
     const [mediumPrimes, setmediumPrimes] = useState('');
 
+    // check if text is string
     const IsString = (txt) => {
         return /\D/.test(txt);
     }
 
+    // get primes and medium primes from backend with axios
     const onGenPrimes = () => {
-        if (rangeVal === '1')
+        if (parseInt(rangeVal) < 2)
             return;
         if (IsString(rangeVal)) {
-            setwarningMsg('Please input the number value!');
+            setwarningMsg('Please input integer value!');
             return;
         } else if (parseInt(rangeVal) === 0) {
             setwarningMsg('Please input bigger than 0!');
@@ -62,7 +68,7 @@ const PrimesBox = styled(Box)`
     margin-top: 20px;
     overflow: auto;
     max-width: 450px;
-    height: 100px;
+    max-height: 100px;
 `;
 const ButtonBox = styled(Box)`
     border-radius: 5px;
